@@ -39,6 +39,11 @@
         a:hover {
             text-decoration: underline;
         }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -46,6 +51,8 @@
     <!-- 說明文字區域 -->
     <div class="description">
         <p><strong>土壤液化</strong> 是因為「砂質土壤」結合「高地下水位」的狀況，遇到一定強度的地震搖晃，導致類似砂質顆粒浮在水中的現象，因而使砂質土壤失去承載建築物重量的力量，造成建築物下陷或傾斜。</p>
+        <!-- 添加圖片 -->
+        <img src="https://www.liquid.net.tw/cgs/public/images/QA/8-1.png" alt="土壤液化圖片">
     </div>
 
     <!-- 地圖容器 -->
@@ -53,7 +60,7 @@
 
     <!-- 查詢連結區域 -->
     <div class="footer">
-        <p>查詢更多土壤液化潛勢資料，請參考 <a href="https://www.liquid.net.tw/cgs/public/" target="_blank">這裡</a></p>
+        <p>查詢更多土壤液化潛勢資料，請參考 <a href="https://www.liquid.net.tw/cgs/public/" target="_blank">土壤液化潛勢查詢系統</a></p>
     </div>
 
     <script>
@@ -103,7 +110,7 @@
                             const properties = feature.properties;
                             const popupContent = `
                                 <strong>土壤液化潛勢：</strong>${properties.classify || "未知"}<br>
-                                <strong>描述：</strong>${properties.description || "無詳細描述"}
+                                <strong>描述：</strong>${properties.description || "紅-高度潛勢區；橘-中度潛勢區；黃-低度潛勢區 "}
                             `;
                             layer.bindPopup(popupContent);
                         }

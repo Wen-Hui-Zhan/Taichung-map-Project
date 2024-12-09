@@ -69,7 +69,7 @@
                             const properties = feature.properties;
                             const popupContent = `
                                 <strong>土壤液化潛勢：</strong>${properties.classify || "未知"}<br>
-                                <strong>描述：</strong>${properties.description || "無詳細描述"}
+                                <strong>描述：</strong>${properties.description || "紅-高度潛勢區；橘-中度潛勢區；黃-低度潛勢區"}
                             `;
                             layer.bindPopup(popupContent);
                         }

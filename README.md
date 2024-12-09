@@ -18,16 +18,16 @@
             width: 100%;  /* 地圖寬度 100% */
         }
         .description {
-            padding: 10px;
+            padding: 20px;
             background-color: #f9f9f9;
             text-align: center;
             font-size: 18px;
             color: #333;
-            margin-top: 20px;
+            margin: 20px 0;
         }
         .footer {
             text-align: center;
-            padding: 10px;
+            padding: 15px;
             font-size: 16px;
             background-color: #f9f9f9;
             margin-top: 20px;

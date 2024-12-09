@@ -1,5 +1,4 @@
-# taichung-map-project
-台中土壤液化潛勢區
+# 台中土壤液化潛勢區
 
 
 <!DOCTYPE html>

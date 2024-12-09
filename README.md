@@ -1,6 +1,3 @@
-# 台中土壤液化潛勢區
-
-
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -14,18 +11,54 @@
         body {
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
         }
         #map {
-            height: 100vh; /* 地圖全螢幕高度 */
-            width: 100%;  /* 地圖全螢幕寬度 */
+            height: 80vh; /* 地圖佔據螢幕 80% 高度 */
+            width: 100%;  /* 地圖寬度 100% */
+        }
+        .description {
+            padding: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
+
+    <!-- 說明文字區域 -->
+    <div class="description">
+        <p><strong>土壤液化</strong> 是因為「砂質土壤」結合「高地下水位」的狀況，遇到一定強度的地震搖晃，導致類似砂質顆粒浮在水中的現象，因而使砂質土壤失去承載建築物重量的力量，造成建築物下陷或傾斜。</p>
+    </div>
+
+    <!-- 地圖容器 -->
     <div id="map"></div>
+
+    <!-- 查詢連結區域 -->
+    <div class="footer">
+        <p>查詢更多土壤液化潛勢資料，請參考 <a href="https://www.liquid.net.tw/cgs/public/" target="_blank">這裡</a></p>
+    </div>
+
     <script>
-        
-        const map = L.map('map').setView([24.147736, 120.673648], 12);
+        // 初始化地圖
+        const map = L.map('map').setView([24.147736, 120.673648], 12); // 台中市中心座標
 
         // 添加 OpenStreetMap 圖層
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -33,25 +66,26 @@
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // 資料來源、顏色
+        // 定義資料來源及顏色對應
         const datasets = [
             {
                 url: "https://www.geologycloud.tw/api/v1/zh-tw/liquefaction?area=%E8%87%BA%E4%B8%AD&classify=%E9%AB%98%E6%BD%9B%E5%8B%A2&all=true&t=.json",
-                color: "red",    // 高潛勢(紅色)
+                color: "red",    // 高潛勢：紅色
                 fillColor: "red"
             },
             {
                 url: "https://www.geologycloud.tw/api/v1/zh-tw/liquefaction?area=%E8%87%BA%E4%B8%AD&classify=%E4%B8%AD%E6%BD%9B%E5%8B%A2&all=true&t=.json",
-                color: "orange", // 中潛勢(橘色)
+                color: "orange", // 中潛勢：橘色
                 fillColor: "orange"
             },
             {
                 url: "https://www.geologycloud.tw/api/v1/zh-tw/liquefaction?area=%E8%87%BA%E4%B8%AD&classify=%E4%BD%8E%E6%BD%9B%E5%8B%A2&all=true&t=.json",
-                color: "yellow", // 低潛勢(黃色)
-                fillColor: "yellow"
+                color: "#FFFF99", // 低潛勢：亮黃色
+                fillColor: "#FFFF99"
             }
         ];
 
+        // 獲取並繪製每個資料集
         datasets.forEach(dataset => {
             fetch(dataset.url)
                 .then(response => response.json())
@@ -69,7 +103,7 @@
                             const properties = feature.properties;
                             const popupContent = `
                                 <strong>土壤液化潛勢：</strong>${properties.classify || "未知"}<br>
-                                <strong>描述：</strong>${properties.description || "紅-高度潛勢區；橘-中度潛勢區；黃-低度潛勢區"}
+                                <strong>描述：</strong>${properties.description || "無詳細描述"}
                             `;
                             layer.bindPopup(popupContent);
                         }
@@ -78,5 +112,6 @@
                 .catch(error => console.error(`資料載入失敗 (${dataset.url}):`, error));
         });
     </script>
+
 </body>
 </html>

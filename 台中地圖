@@ -1,63 +1,33 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>台中市火車站地圖</title>
-  
-  <!-- 引入 Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-
   <style>
-    /* 設定地圖容器的大小 */
-    #map {
-      width: 100%;
-      height: 500px;
-    }
+   .maptile {           /* css 讓map tile拼接時，tile沒有空隙 */
+        display:block;
+        margin:0;
+        padding:0;
+        border:none;
+        float:left;
+   }
   </style>
+
+
+
 </head>
+
 <body>
-  <h1>台中市火車站地圖</h1>
-  <p>以下是台中市主要火車站位置及周圍500公尺範圍。</p>
-
-  <!-- 地圖容器 -->
-  <div id="map"></div>
-
-  <!-- 引入 Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-  <script>
-    // 初始化地圖，設定初始位置和縮放級別
-    var map = L.map('map').setView([24.1465, 120.6736], 13); // 台中市的座標
-
-    // 使用 OpenStreetMap 作為地圖圖層
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    // 台中市主要火車站座標
-    var stations = [
-      { name: "台中火車站", lat: 24.1465, lon: 120.6736 },
-      { name: "豐原火車站", lat: 24.2565, lon: 120.7257 },
-      { name: "大甲火車站", lat: 24.2902, lon: 120.5851 },
-      { name: "烏日火車站", lat: 24.1361, lon: 120.6459 },
-      { name: "霧峰火車站", lat: 24.0309, lon: 120.7315 }
-    ];
-
-    // 在地圖上標註火車站並顯示500公尺範圍
-    stations.forEach(function(station) {
-      // 標註火車站
-      var marker = L.marker([station.lat, station.lon]).addTo(map);
-      marker.bindPopup("<b>" + station.name + "</b><br>這是" + station.name + "的位置。");
-
-      // 顯示500公尺範圍
-      var circle = L.circle([station.lat, station.lon], {
-        color: 'blue',
-        fillColor: '#30f',
-        fillOpacity: 0.2,
-        radius: 500
-      }).addTo(map);
-      circle.bindPopup(station.name + " 周圍 500 公尺範圍");
-    });
-  </script>
+ 
+<hr>
+  <div id='map'  style="width:768; height:768; overflow:hidden;">
+    <img class="maptile" src="https://mt0.google.com/vt/lyrs=m&x=213&y=109&z=8">
+    <img class="maptile" src="https://mt0.google.com/vt/lyrs=m&x=214&y=109&z=8">
+    <img class="maptile" src="https://mt0.google.com/vt/lyrs=m&x=215&y=109&z=8"><br>
+    <img class="maptile" src="https://mt0.google.com/vt/lyrs=m&x=213&y=110&z=8">
+    <img class="maptile" src="https://mt0.google.com/vt/lyrs=m&x=214&y=110&z=8">
+    <img class="maptile" src="https://mt0.google.com/vt/lyrs=m&x=215&y=110&z=8"><br>
+    <img class="maptile" src="https://mt0.google.com/vt/lyrs=m&x=213&y=111&z=8">
+    <img class="maptile" src="https://mt0.google.com/vt/lyrs=m&x=214&y=111&z=8">
+    <img class="maptile" src="https://mt0.google.com/vt/lyrs=m&x=215&y=111&z=8"><br>
+</div>
+<hr>
 </body>
 </html>
